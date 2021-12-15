@@ -1,0 +1,74 @@
+.font {
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.right-half-box {
+    width: 50%;
+    position: absolute;
+    right: 0px;
+    height: 100%;
+    /* background-image: linear-gradient(140deg, rgb(243, 191, 191) 0%, #FF4646 20%, #F05454 95%);*/
+    background-color: #FF5454;
+    animation-name: bg-img-animate;
+    animation-duration: 1.5s;
+}
+
+.bg-img {
+    width: 50%;
+    margin-top: 20%;
+    margin-left: 30%;
+}
+
+@keyframes bg-img-animate {
+    from {
+        right: -40%;
+    }
+    to {
+        right: 0%;
+    }
+}
+
+.box-main {
+    width: auto;
+    height: auto;
+    background-color: #252525;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+}
+
+.form-control:focus {
+    border-color: #FF4646 !important;
+    box-shadow: none;
+}
+
+.name-login:hover {
+    text-shadow: none;
+    box-shadow: none;
+    border-color: #dc3545;
+    background-color: #dc3545;
+    cursor: default;
+}
+
+.icon-input-btn {
+    display: inline-block;
+    position: relative;
+}
+
+.icon-input-btn input[type="submit"] {
+    padding-right: 1.5em;
+}
+
+.icon-input-btn .bi {
+    display: inline-block;
+    position: absolute;
+    left: 3.7em;
+    top: 30%;
+    -webkit-transition: -webkit-transform 2s;
+    -webkit-transform: rotate(360deg) translate(0);
+}
+
+footer {
+    position: absolute;
+    margin-left: 5%;
+    margin-top: 10%;
+}
