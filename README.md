@@ -1,6 +1,6 @@
 # nota_fat_pneus
-### dashboard de recebimento das notas fiscais 
-### dashboard receipt of invoices
+###### dashboard de recebimento das notas fiscais 
+###### dashboard receipt of invoices
 
 
 
@@ -19,4 +19,4 @@
   __________________________________________________________________________________________________________________________________________
   
   
-  [![Visitors](https://visitor-badge.glitch.me/badge?page_id=github/gleidsolaire/managementbi_autoamerica)](https://github.com/gleidsolaire/managementbi_autoamerica)
+  [![Visitors](https://visitor-badge.glitch.me/badge?page_id=github/gleidsolaire/nota_fat_pneus)](https://github.com/gleidsolaire/nota_fat_pneus)
