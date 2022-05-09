@@ -9,14 +9,14 @@ include ('../database/connect.php');
 
 if(empty ($_POST['numero'])) {
 
-    echo "Erro! <a href='../agendar.php'>Voltar</a>";
+    echo "Erro! <a href='../cadastrar.php'>Voltar</a>";
     exit();
 }
 
 $numero_notav = $_POST['numero'];
 $observacaov = $_POST['observacao'];
 $id_usuariov = $_SESSION['id'];
-date_default_timezone_set('America/Campo_Grande');
+date_default_timezone_set('America/Sao_Paulo');
 $datav = date('d/m/Y h:i:s a', time());
 
 $dir = 'rep/';
@@ -45,7 +45,7 @@ $zip -> close();
 
    
 // verificando se não está inserindo uma nota com numero igual
-$query = "SELECT numero_nota FROM nota_fiscal WHERE numero_nota = '$numero_notav'";
+$query = "SELECT numero_nota FROM nota_fiscal WHERE  numero_nota = '$numero_notav'";
 $resultado = mysqli_query($conn, $query) or die ('erro de conexao');
 
 $linha = mysqli_num_rows($resultado);

@@ -19,7 +19,7 @@ include 'database/connect.php';
 $pesquisar = $_POST['busca'] ?? '';
 
 $query = "SELECT  id_nota, numero_nota, _data, observacao, arquivo, user.usuario, id_usuario, nota_fiscal.check FROM nota_fiscal JOIN user 
-ON nota_fiscal.id_usuario = user.id WHERE numero_nota  LIKE '%$pesquisar%' ORDER BY  id_nota desc ";
+ON nota_fiscal.id_usuario = user.id WHERE numero_nota  LIKE '%$pesquisar%' ORDER BY  id_nota desc LIMIT 50 ";
 
 
 

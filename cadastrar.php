@@ -1,20 +1,19 @@
-<?php 
+<?php
 
 // verifica se session (não) está vazia 
-if(!isset($_SESSION)) 
-{ 
-   session_start();
+if (!isset($_SESSION)) {
+    session_start();
 }
 
 // verifica se existe alguma session 'usuario'
-if(!$_SESSION['usuario']) {
-   header('Location: index.php');
-  
+if (!$_SESSION['usuario']) {
+    header('Location: index.php');
+
     exit();
-} 
+}
 
 // verifica se o usuario logado é admin
-if($_SESSION['admin'] != 1) {
+if ($_SESSION['admin'] != 1) {
     header('Location: acesso.html');
 }
 
@@ -42,39 +41,85 @@ if($_SESSION['admin'] != 1) {
 <body>
     <div id="loadmenu"></div>
 
-   
-        <div class="container-fluid box-main" style="height: 100%;">
 
-        <form action="controller/cadastrar_controller.php"  method="POST" enctype="multipart/form-data">
+    <div class="container-fluid box-main" style="height: 100%;">
 
-                <div class="row">
-                    <div class="col  ms-3" style="margin-top: 20%;">
-                        <input type="text" name="numero"  onkeypress="return event.charCode >= 32 && event.charCode <= 57 " required class="form-control font" placeholder="Numero da nota">
+        <form action="controller/cadastrar_controller.php" method="POST" enctype="multipart/form-data">
 
-                    </div>
-                    <div class="col-4 " style="margin-top: 20%;">
-                        <input type="text" name="observacao"  class="form-control font" placeholder="Observação">
-
+            <div class="row">
+                <div class="col-auto ms-5" style="margin-top: 20%;">
+                    <div class="input-group">
+                        <input type="text" name='' id='numNotas' onkeypress="return event.charCode > 47 && event.charCode <= 57" class="form-control font" placeholder="Numero da nota">
+                        <a id="button1" class="bi bi-plus-circle-fill bg-light input-group-text link-primary  " style="text-decoration: none;" onclick="add_element_to_array()"></a>
                     </div>
 
-                    <div class="col  " style="margin-top: 20%; ">
-                        <label for="namearquivo" class="btn btn-secondary font  bi-paperclip">Anexar Arquivo </label>
-                            <input type="file" name="arquivo[]"  accept="application/PDF, pdf" required id="namearquivo" style="display: none" multiple='multiple'>
-                        <span id='file-name' class="text-light  fs-6"></span>
+                    <span id='Result' class="text-light "></span>
+                    <input hidden type="text" id='nota' name="numero">
+                    <script>
+                        $('#numNotas').keyup(function() {
 
-                    </div>
-                    <div class="col " style="margin-top: 20%;">
-                        <input type="submit" class="btn btn-outline-primary font " value="Salvar">
+                            this.value = ('000000000' + this.value).slice(-9)
+                        })
+                        var x = 0;
+                        var array = Array();
 
-                    </div>
+                        function add_element_to_array() {
+                            array[x] = document.getElementById("numNotas").value;
 
+                            x++;
+                            document.getElementById("numNotas").value = "";
+                            var e = ""
+                            var string
+                           
+                            // verifica se tem apenas um num de nota ou mais
+                            for (var y = 0; y < array.length; y++) {
+                                if (array.length > 1) {
 
+                                    e += array[y] + ","
+
+                                }
+
+                                if (array.length == 1) {
+                                    e += array[y]
+
+                                }
+
+                                string = e.toString()
+
+                            }
+                            //metodo replace pra retirar a ultima virgula quando tiver n's num
+                            document.getElementById("Result").innerHTML = string.replace(/,$/, "")
+
+                            document.getElementById("nota").value = string.replace(/,$/, "")
+
+                        }
+                    </script>
+                </div>
+              
+                <div class="col-auto " style="margin-top: 20%;">
+                    <input type="text" name="observacao" class="form-control font" placeholder="Observação">
 
                 </div>
+
+                <div class="col-auto " style="margin-top: 20%; ">
+                    <label for="namearquivo" class="btn btn-secondary font  bi-paperclip">Anexar Arquivo </label>
+                    <input type="file" name="arquivo[]" accept="application/PDF, pdf" id="namearquivo" style="display: none" multiple='multiple'>
+                    <span id='file-name' class="text-light  fs-6"></span>
+
+                </div>
+                <div class="col-auto " style="margin-top: 20%;">
+                    <input type="submit" class="btn btn-outline-primary font " value="Salvar">
+
+                </div>
+
+
+
+
+            </div>
         </form>
-        </div>
-    
-    
+    </div>
+
+
 
 
 

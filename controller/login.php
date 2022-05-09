@@ -27,6 +27,7 @@ if ($linha ==1) {
     $_SESSION ['usuario']  = $usuario;
     $_SESSION['admin'] = $admin;
     $_SESSION['id'] = $id;
+    
     header('location: ../visualizar.php');
     exit();
 

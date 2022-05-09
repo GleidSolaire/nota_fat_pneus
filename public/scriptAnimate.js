@@ -5,7 +5,11 @@ $(document).ready(function animate() {
 
         marginLeft: "2in",
 
-        fontSize: "3em",
+
 
     }, 1500);
+});
+
+$(document).ready(function loadMenu() {
+    $('#loadnatal').load('feliznatal.html');
 });
