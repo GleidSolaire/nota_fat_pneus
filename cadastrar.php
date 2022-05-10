@@ -49,7 +49,7 @@ if ($_SESSION['admin'] != 1) {
             <div class="row">
                 <div class="col-auto ms-5" style="margin-top: 20%;">
                     <div class="input-group">
-                        <input type="text" name='' id='numNotas' onkeypress="return event.charCode > 47 && event.charCode <= 57" class="form-control font" placeholder="Numero da nota">
+                        <input type="text" name='' required id='numNotas' onkeypress="return event.charCode > 47 && event.charCode <= 57" class="form-control font" placeholder="Numero da nota">
                         <a id="button1" class="bi bi-plus-circle-fill bg-light input-group-text link-primary  " style="text-decoration: none;" onclick="add_element_to_array()"></a>
                     </div>
 
@@ -64,38 +64,44 @@ if ($_SESSION['admin'] != 1) {
                         var array = Array();
 
                         function add_element_to_array() {
-                            array[x] = document.getElementById("numNotas").value;
 
-                            x++;
-                            document.getElementById("numNotas").value = "";
-                            var e = ""
-                            var string
-                           
-                            // verifica se tem apenas um num de nota ou mais
-                            for (var y = 0; y < array.length; y++) {
-                                if (array.length > 1) {
+                            // verifica se não o input nao ta vazio ou so com os 0's da mask
+                            if (document.getElementById("numNotas").value != "" &&
+                                document.getElementById("numNotas").value != '000000000') {
+                                array[x] = document.getElementById("numNotas").value;
+                                x++;
 
-                                    e += array[y] + ","
+                                var e = ""
+                                var string
 
+                                // verifica se tem apenas um num de nota ou mais
+                                for (var y = 0; y < array.length; y++) {
+
+                                    if (array.length > 1) {
+
+                                        e += array[y] + ","
+                                    }
+
+                                    if (array.length == 1) {
+                                        e += array[y]
+                                    }
+
+                                    string = e.toString()
                                 }
 
-                                if (array.length == 1) {
-                                    e += array[y]
+                                //metodo replace pra retirar a ultima virgula quando tiver n's num
+                                document.getElementById("Result").innerHTML = string.replace(/,$/, "")
 
-                                }
 
-                                string = e.toString()
-
+                                document.getElementById("nota").value = string.replace(/,$/, "")
+                            } else {
+                                alert("Número de nota vazio ou inválida!")
                             }
-                            //metodo replace pra retirar a ultima virgula quando tiver n's num
-                            document.getElementById("Result").innerHTML = string.replace(/,$/, "")
-
-                            document.getElementById("nota").value = string.replace(/,$/, "")
 
                         }
                     </script>
                 </div>
-              
+
                 <div class="col-auto " style="margin-top: 20%;">
                     <input type="text" name="observacao" class="form-control font" placeholder="Observação">
 
@@ -112,16 +118,9 @@ if ($_SESSION['admin'] != 1) {
 
                 </div>
 
-
-
-
             </div>
         </form>
     </div>
-
-
-
-
 
 </body>
 
