@@ -1,5 +1,6 @@
 <?php
 
+session_name('sistema_pneu');
 session_start();
 
 session_destroy();

@@ -1,5 +1,9 @@
 <?php 
-session_start();
+if(!isset($_SESSION)) 
+{ 
+    session_name('sistema_pneu');
+   session_start();
+}
 
 if(!$_SESSION['usuario']) {
    header('Location: index.php');

@@ -1,5 +1,5 @@
 <?php 
-
+session_name('sistema_pneu');
 session_start();
 include ('../database/connect.php');
 

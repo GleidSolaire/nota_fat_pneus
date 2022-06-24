@@ -2,6 +2,7 @@
 <?php
 if(!isset($_SESSION)) 
 { 
+   session_name('sistema_pneu');
    session_start();
 }
 

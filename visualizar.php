@@ -3,6 +3,7 @@
 // verifica se session (não) está vazia 
 if(!isset($_SESSION)) 
 { 
+    session_name('sistema_pneu');
    session_start();
 }
 // verifica se existe alguma session 'usuario'
@@ -60,8 +61,7 @@ ON nota_fiscal.id_usuario = user.id WHERE numero_nota  LIKE '%$pesquisar%' ORDER
                 <table class=" table  text-light  table-borderless " id="table">
                     <thead class="border-bottom ">
                         <tr >
-                            <th scope="col" class="bi-check2-square "> Marcar</th>
-                            <th scope="col" class="bi-file-text"> Numero Nota</th>
+                        <th scope="col" class="bi-file-text"> Numero Nota</th>
                             <th scope="col" class="bi-calendar-date"> Data</th>
                             <th scope="col" class="bi-card-text"> Observação</th>
                             <th scope="col" class="bi-arrow-down">Baixar</th>
@@ -87,32 +87,8 @@ ON nota_fiscal.id_usuario = user.id WHERE numero_nota  LIKE '%$pesquisar%' ORDER
                             $id_usuariov = $linha['id_usuario'];
                             $checkv  = $linha['check'];
 
-
-
-                            if ($checkv != 1) {
-                                echo" <tr>
-
-                                <td >
-                                <form action='controller/check_controller.php?nota=$id_notav' method='post' >
-                                 <input type='checkbox' onchange='this.form.submit()' name='check' value='1'  class='ms-3 form-check-input ' >
-                                
-                                 </form>
-                                 </td>";
-                            } else {
-
-                                echo " <tr>
-
-                                <td >
-                                
-                                 <input type='checkbox'   class='ms-3 form-check-input ' checked >
-                                
-                                 </form>
-                                 </td>";
-
-                            }
-
                             echo "
-                           
+                            <tr>
                             <td >
                                $numero_notav
                             </td>
@@ -121,12 +97,30 @@ ON nota_fiscal.id_usuario = user.id WHERE numero_nota  LIKE '%$pesquisar%' ORDER
                                $datav
                             </td>
                             <td >
-                            <a href='' id='obs' data-bs-toggle='tooltip' data-bs-placement='top' title='$observacaov'  class='m-5 bi-eye'>
+                            <a href='' id='obs' data-bs-toggle='tooltip' data-bs-placement='top' title='$observacaov'   class='m-5 bi-eye'>
                               
-                            </td>
+                            </td>";
+
+                            if ($checkv != 1) {
+                            echo"
                             <td>
-                               <a href='controller/$arquivov'  target='_blank'  class='m-4 bi-arrow-down-circle'>
-                            </td>
+
+                            <form action='controller/check_controller.php?nota=$id_notav&arq=$arquivov&check=1' method='post' >
+                         
+                               <input type='submit' id='btn'   value='baixar'     class='btn btn-primary btn-sm ' >
+                              
+                               </form>
+                            
+                               </td>";
+                             } else {
+                                echo "
+
+                                <td>
+                                <a href=''   class='btn btn-secondary btn-sm disabled ' > baixar </a>
+                                </td>
+                                ";
+                               }
+                               echo"
                             <td class=''>
                                $usuariov
                             </td>
